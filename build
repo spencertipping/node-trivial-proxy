@@ -574,8 +574,10 @@ associate($to, retrieve($from));
 rm($from);
 __09f350db8406303ade06d229477d79ad
 
-meta::function('node', <<'__0181653b21635d5df689405cfa705812');
+meta::function('node', <<'__e2dd50b29c7bc78aaf213c35a90fa92c');
 # Runs node on a collection of source files.
+retrieve('data::random-number') || associate('data::random-number', rand());
+
 hook('bin/before-node');
 my $filename  = '/tmp/' . state();
 file::write($filename, join "\n", map(file::read($_), @_));
@@ -583,7 +585,7 @@ file::write($filename, join "\n", map(file::read($_), @_));
 terminal::message('debug', "starting application using $filename");
 system('node', $filename);
 hook('bin/after-node');
-__0181653b21635d5df689405cfa705812
+__e2dd50b29c7bc78aaf213c35a90fa92c
 
 meta::function('parents', 'join "\\n", grep s/^parent:://o, sort keys %data;');
 meta::function('perl', <<'__f2b57dd342923797e8e2287c3095803f');
